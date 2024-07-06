@@ -4,33 +4,32 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 import { AiOutlineEdit, AiOutlineQuestionCircle } from 'react-icons/ai';
 import { BiSolidDashboard } from "react-icons/bi";
-import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Sidebar() {
     const router = useRouter();
-    const pathname = usePathname();
-    const [selected, setSelected] = useState('');
+    const [selected, setSelected] = useState('dashboard');
+
+    const handleClick = (name: string, path: string) => {
+        setSelected(name);
+        router.push(path);
+    };
 
     useEffect(() => {
-        if (pathname.includes('take-quiz')) {
-            setSelected('take-quiz');
-        } else if (pathname.includes('create-quiz')) {
-            setSelected('create-quiz');
-        } else if (pathname.includes('dashboard')) {
-            setSelected('dashboard');
+        if (selected === 'dashboard') {
+            router.push('/dashboard');
         }
-    }, [pathname]);
+    }, [selected, router]);
 
     const buttonClasses = (name: string) =>
         `sidebar-button w-full justify-start ${selected === name ? 'bg-primary text-primary-foreground' : ''}`;
 
     return (
-        <aside className="w-[250px] flex flex-col items-start h-full p-4 bg-card text-card-foreground">
+        <aside className="w-[200px] flex flex-col items-start h-full p-4 text-card-foreground">
             <div className="flex flex-col w-full items-start justify-between space-y-2">
                 <Button
                     variant='ghost'
-                    onClick={() => router.push('/dashboard')}
+                    onClick={() => handleClick('dashboard', '/dashboard')}
                     className={buttonClasses('dashboard')}
                 >
                     <BiSolidDashboard className="text-xl" />
@@ -38,7 +37,7 @@ export default function Sidebar() {
                 </Button>
                 <Button
                     variant='ghost'
-                    onClick={() => router.push('/dashboard/take-quiz')}
+                    onClick={() => handleClick('take-quiz', '/dashboard/take-quiz')}
                     className={buttonClasses('take-quiz')}
                 >
                     <AiOutlineQuestionCircle className="text-xl" />
@@ -46,7 +45,7 @@ export default function Sidebar() {
                 </Button>
                 <Button
                     variant='ghost'
-                    onClick={() => router.push('/dashboard/create-quiz')}
+                    onClick={() => handleClick('create-quiz', '/dashboard/create-quiz')}
                     className={buttonClasses('create-quiz')}
                 >
                     <AiOutlineEdit className="text-xl" />

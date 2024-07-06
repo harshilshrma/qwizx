@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
+import { Separator } from "@/components/ui/separator"
+
 
 export default function DashboardLayout ({ children}: {children: React.ReactNode}) {
     const [authenticated, setAuthenticated] = useState(false);
@@ -28,8 +30,10 @@ export default function DashboardLayout ({ children}: {children: React.ReactNode
     return (
         <div className="flex flex-col h-screen">
             <Navbar />
+            <Separator />
             <div className="flex flex-1">
                 <Sidebar />
+                <Separator orientation="vertical"/>
                 <main className="w-2/3 p-4">
                     {children}
                 </main>
