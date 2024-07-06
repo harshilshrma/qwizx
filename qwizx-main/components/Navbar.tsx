@@ -29,10 +29,6 @@ const Navbar = () => {
 
             <div className="hidden md:flex justify-between gap-4">
                 <Link href="#experiences" className="mx-2 text-primary">Experience</Link>
-                <Link href="#resume" className="mx-2 text-primary">Resume</Link>
-                <Link href="#projects" className="mx-2 text-primary">Projects</Link>
-                <Link href="#recs" className="mx-2 text-primary">Recommendations</Link>
-                <Link href="#contact" className="mx-2 text-primary">Contact Me</Link>
                 {/* <Link href="https://github.com/harshilshrma/my-portfolio" target="_blank" rel="noopener noreferrer" className="mx-2 text-primary no-underline hover:underline">GitHub <MoveUpRight width={16} height={16} className="inline-block mb-1" /></Link> */}
             </div>
 
@@ -46,10 +42,6 @@ const Navbar = () => {
                 <div className="md:hidden absolute top-full left-0 w-full bg-background z-50">
                     <div className="flex flex-col items-center py-4 space-y-2">
                         <Link href="#experiences" className="mx-2 text-primary">Experience</Link>
-                        <Link href="#resume" className="mx-2 text-primary">Resume</Link>
-                        <Link href="#projects" className="mx-2 text-primary">Projects</Link>
-                        <Link href="#recs" className="mx-2 text-primary">Recommendations</Link>
-                        <Link href="#contact" className="mx-2 text-primary">Contact Me</Link>
                     </div>
                 </div>
             )}

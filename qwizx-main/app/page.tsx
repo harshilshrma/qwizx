@@ -9,7 +9,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleSignIn = () => {
-    router.push('/dashboard.tsx');
+    router.push('/dashboard');
   };
 
   return (
