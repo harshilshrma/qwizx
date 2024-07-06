@@ -2,16 +2,29 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Menu, MoveUpRight } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import Image from "next/image";
 import { useTheme } from 'next-themes';
-import ModeToggle  from './ModeToggle';
+import ModeToggle from './ModeToggle';
+import { useRouter } from 'next/navigation';
+import { UserRound } from "lucide-react"
 
+import { Button } from "@/components/ui/button"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import { supabase } from '../lib/supabase'; // Adjust this path as per your project structure
 
 const Navbar = () => {
     const { theme } = useTheme();
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         setIsDarkMode(theme === 'dark');
@@ -21,27 +34,55 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const handleSignOut = async () => {
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+            console.error('Sign out error:', error.message);
+        } else {
+            console.log('User signed out successfully');
+            router.push('/'); // Redirect to homepage after sign-out
+        }
+    };
+
     return (
         <nav className="flex items-center justify-between p-4 relative">
-            <Link href="#">
-                <Image src={isDarkMode ? '/mylogo-white.png' : '/mylogo-black.png'} alt="Logo" height={40} width={40} />
-            </Link>
+            <p className='text-4xl font-bold'>
+                QwizX
+            </p>
 
-            <div className="hidden md:flex justify-between gap-4">
-                <Link href="#experiences" className="mx-2 text-primary">Experience</Link>
-                {/* <Link href="https://github.com/harshilshrma/my-portfolio" target="_blank" rel="noopener noreferrer" className="mx-2 text-primary no-underline hover:underline">GitHub <MoveUpRight width={16} height={16} className="inline-block mb-1" /></Link> */}
+            <div className='flex justify-end gap-6'>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline" size="icon">
+                            <UserRound className="h-4 w-4" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuLabel>Hey! SmartPants</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={handleSignOut}>Sign Out</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+
+                <ModeToggle />
             </div>
-
-            <ModeToggle />
-
-            <button className="md:hidden ml-4" onClick={toggleMenu}>
-                <Menu className="h-6 w-6 text-primary" />
-            </button>
 
             {isMenuOpen && (
                 <div className="md:hidden absolute top-full left-0 w-full bg-background z-50">
                     <div className="flex flex-col items-center py-4 space-y-2">
-                        <Link href="#experiences" className="mx-2 text-primary">Experience</Link>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <button className="ml-4">
+                                    <Image src="/upvote.jpeg" alt="Profile" height={24} width={24} className="rounded-full" />
+                                </button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent>
+                                <DropdownMenuLabel>Hi, </DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem onClick={handleSignOut}>Sign Out</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
                 </div>
             )}
