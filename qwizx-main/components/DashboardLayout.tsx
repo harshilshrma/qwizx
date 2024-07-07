@@ -34,7 +34,7 @@ export default function DashboardLayout ({ children}: {children: React.ReactNode
             <div className="flex flex-1">
                 <Sidebar />
                 <Separator orientation="vertical"/>
-                <main className="w-2/3 p-4">
+                <main className="w-full p-4">
                     {children}
                 </main>
             </div>
