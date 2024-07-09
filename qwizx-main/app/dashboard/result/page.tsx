@@ -13,7 +13,7 @@ const QuizResultPage = () => {
     const total = searchParams.get('total');
 
     const handleGoBack = () => {
-        router.push('/dashboard');
+        router.push('/dashboard/take-quiz');
     };
 
     return (
@@ -31,7 +31,7 @@ const QuizResultPage = () => {
                                 <span className='text-primary'>Great job! You passed!</span> : <span className=''>Don't worry, try again sometime later!</span>
                             }
                         </p>
-                        <Button onClick={handleGoBack}>Go to Dashboard</Button>
+                        <Button onClick={handleGoBack}>Go back to 'Take a Quiz'</Button>
                     </div>
                 </CardContent>
             </Card>
