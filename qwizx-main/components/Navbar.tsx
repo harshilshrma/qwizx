@@ -58,11 +58,11 @@ const Navbar = () => {
                 </div>
             </Link>
 
-            <div className='flex justify-end gap-6'>
+            <div className='flex justify-end gap-4'>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="icon" className="hover:bg-primary ">
-                            <UserRound className="h-4 w-4" />
+                        <Button variant="outline" className="hover:bg-primary ">
+                            <UserRound className="h-4 w-4" />&nbsp;&nbsp;Profile
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
