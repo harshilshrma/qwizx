@@ -18,8 +18,9 @@ const QuizResultPage = () => {
     };
 
     return (
-        <div className="container mx-auto">
-            <Suspense>
+        <Suspense>
+            <div className="container mx-auto">
+
                 <Card className='h-[400px] shadow-md'>
                     <CardHeader>
                         <CardTitle className="text-4xl font-bold mb-2 text-primary">Quiz Results</CardTitle>
@@ -37,8 +38,9 @@ const QuizResultPage = () => {
                         </div>
                     </CardContent>
                 </Card>
-            </ Suspense>
-        </div>
+
+            </div>
+        </ Suspense>
     );
 };
 
