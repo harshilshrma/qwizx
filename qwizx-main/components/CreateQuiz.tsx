@@ -250,7 +250,7 @@ export default function CreateQuiz() {
                     <AlertDialogHeader>
                         <AlertDialogTitle>Quiz Submitted</AlertDialogTitle>
                         <AlertDialogDescription>
-                            We've received your quiz. Our team will review it, and if valid, it will be published in the 'Take a Quiz' section.
+                            We&apos;ve received your quiz. Our team will review it, and if valid, it will be published in the &apos;Take a Quiz&apos; section.
                         </AlertDialogDescription>
                         <AlertDialogDescription>Thank you!</AlertDialogDescription>
                     </AlertDialogHeader>

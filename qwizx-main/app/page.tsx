@@ -76,7 +76,7 @@ export default function Home() {
         <div className="pt-6 w-full h-full flex items-center justify-center z-50">
           <div className="flex flex-col items-center">
             <Progress value={progress} className="w-[80%]" />
-            <p className="text-lg mt-4 text-primary">Just a moment! We're taking you to the quiz paradise!</p>
+            <p className="text-lg mt-4 text-primary">Just a moment! We&apos;re taking you to the quiz paradise!</p>
           </div>
         </div>
       )}
