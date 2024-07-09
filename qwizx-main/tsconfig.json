@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/GoogleSignIn.js", "components/anim1.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/GoogleSignIn.js", "components/anim1.js", "lib/supabase.js"],
   "exclude": ["node_modules"]
 }
