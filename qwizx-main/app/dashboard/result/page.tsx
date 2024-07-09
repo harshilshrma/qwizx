@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Suspense } from 'react'
 
-const QuizResultPage = () => {
+const QuizResultPageContent  = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const score = searchParams.get('score');
@@ -41,6 +41,14 @@ const QuizResultPage = () => {
             
         </div>
         </ Suspense>
+    );
+};
+
+const QuizResultPage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <QuizResultPageContent />
+        </Suspense>
     );
 };
 
