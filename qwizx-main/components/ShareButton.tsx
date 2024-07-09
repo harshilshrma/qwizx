@@ -38,7 +38,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ quizLink }) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button type="submit" variant="outline" size={"icon"} className="shadow-md"><IoMdShare className="h-4 w-4" /></Button>
+                <Button type="submit" variant="outline" size={"icon"} className="shadow-md bg-card"><IoMdShare className="h-4 w-4" /></Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>

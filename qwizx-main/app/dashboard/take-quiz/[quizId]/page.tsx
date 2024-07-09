@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'; // corrected import
 import { useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useToast } from '@/components/ui/use-toast'; // Import useToast hook
 
 const TakeQuizPage = () => {
     const router = useRouter();
@@ -16,6 +18,7 @@ const TakeQuizPage = () => {
     const [answers, setAnswers] = useState<any>({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { toast } = useToast(); // Initialize the toast hook
 
     useEffect(() => {
         const fetchQuiz = async () => {
@@ -43,24 +46,35 @@ const TakeQuizPage = () => {
         }
     }, [quizId]);
 
-    const handleAnswerChange = (questionId: string, answerIndex: number) => {
-        setAnswers({
-            ...answers,
+    const handleAnswerChange = (questionId: number, answerIndex: number) => {
+        setAnswers((prevAnswers: any) => ({
+            ...prevAnswers,
             [questionId]: answerIndex
-        });
+        }));
     };
 
     const handleSubmit = () => {
+        // Validate if all questions are answered
+        for (let i = 0; i < quiz.questions.length; i++) {
+            if (answers[i] === undefined) {
+                toast({
+                    title: "Error",
+                    description: "Please answer all questions before submitting the quiz.",
+                });
+                return;
+            }
+        }
+
         let score = 0;
         quiz.questions.forEach((question: any, index: number) => {
             const correctAnswerIndex = question.correctAnswer;
-            const userAnswerIndex = answers[question.id];
+            const userAnswerIndex = answers[index];
 
             if (userAnswerIndex === correctAnswerIndex) {
                 score += 1;
             }
         });
-        router.push(`/dashboard/quiz-result?score=${score}&total=${quiz.questions.length}`);
+        router.push(`/dashboard/result?score=${score}&total=${quiz.questions.length}`);
     };
 
     if (loading) {
@@ -83,20 +97,22 @@ const TakeQuizPage = () => {
                     <CardDescription className="text-lg mb-6">{quiz.quiz_description}</CardDescription>
                     <Separator className="my-4" />
                     <p className="text-sm text-muted-foreground">Each question is worth 1 point. Please answer all questions. No questions should be left unanswered.</p>
+                    <p className="text-sm text-destructive">Please do not refresh or navigate away from this page as doing so will cause you to lose your progress.</p>
                 </CardHeader>
                 <CardContent>
-                    {quiz.questions.map((question: any) => (
-                        <div key={question.id} className="mb-6">
+                    {quiz.questions.map((question: any, questionIndex: number) => (
+                        <div key={questionIndex} className="mb-6">
                             <h2 className="font-semibold">{question.question}</h2>
                             <RadioGroup
-                                value={answers[question.id] !== undefined ? String(answers[question.id]) : ''}
-                                onValueChange={(value) => handleAnswerChange(question.id, Number(value))}
+                                value={answers[questionIndex] !== undefined ? String(answers[questionIndex]) : ''}
+                                onValueChange={(value) => handleAnswerChange(questionIndex, Number(value))}
                                 className="mt-2"
                             >
-                                {question.options.map((option: string, index: number) => (
-                                    <RadioGroupItem key={index} value={String(index)} className="mb-2">
-                                        {option}
-                                    </RadioGroupItem>
+                                {question.options.map((option: string, optionIndex: number) => (
+                                    <div key={optionIndex} className="flex items-center space-x-2 mb-2">
+                                        <RadioGroupItem value={String(optionIndex)} id={`q${questionIndex}_o${optionIndex}`} />
+                                        <Label htmlFor={`q${questionIndex}_o${optionIndex}`}>{option}</Label>
+                                    </div>
                                 ))}
                             </RadioGroup>
                         </div>
