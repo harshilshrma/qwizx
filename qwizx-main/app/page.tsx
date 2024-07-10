@@ -62,8 +62,8 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center p-8">
 
       <div className="text-center">
-        <h1 className="text-5xl flex font-bold mb-4">Welcome to&nbsp;<div className='flex'>
-          <p className='text-5xl font-bold'>Qwiz</p><span className='text-5xl text-primary font-bold'>X</span>
+        <h1 className="md:text-5xl text-3xl flex font-bold mb-4">Welcome to&nbsp;<div className='flex'>
+          <p className='md:text-5xl text-3xl font-bold'>Qwiz</p><span className='md:text-5xl text-3xl text-primary font-bold'>X</span>
         </div></h1>
         {!session && <p className="text-xl font-medium text-primary mb-8">Sign in to get started</p>}
         <div className="flex items-center justify-center">
@@ -76,7 +76,7 @@ export default function Home() {
         <div className="pt-6 w-full h-full flex items-center justify-center z-50">
           <div className="flex flex-col items-center">
             <Progress value={progress} className="w-[80%]" />
-            <p className="text-lg mt-4 text-primary">Just a moment! We&apos;re taking you to the quiz paradise!</p>
+            <p className="text-base mt-4 text-primary">Just a moment! We&apos;re taking you to the quiz paradise!</p>
           </div>
         </div>
       )}

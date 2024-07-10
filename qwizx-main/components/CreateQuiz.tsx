@@ -133,10 +133,10 @@ export default function CreateQuiz() {
     return (
         <>
             <Form {...form}>
-                <h1 className="text-4xl font-bold mb-2 text-primary">Create a Quiz</h1>
-                <p className="text-lg mb-2">Welcome to the quiz creation page. Please fill out the details below to create your quiz.</p>
-                <p className="text-lg mb-2">Here are some basic rules to follow:</p>
-                <ul className="list-disc list-inside mb-6">
+                <h1 className="md:text-4xl text-2xl font-bold mb-2 text-primary">Create a Quiz</h1>
+                <p className="md:text-lg text-xs mb-2">Welcome to the quiz creation page. Please fill out the details below to create your quiz.</p>
+                <p className="md:text-lg text-xs mb-2">Here are some basic rules to follow:</p>
+                <ul className="list-disc md:text-lg text-xs list-inside mb-6">
                     <li>The quiz name must be at least 4 characters long.</li>
                     <li>The quiz description must be at least 10 characters long.</li>
                     <li>Each question must have exactly 4 options.</li>
@@ -150,7 +150,7 @@ export default function CreateQuiz() {
                             name="quizName"
                             render={({ field }) => (
                                 <FormItem className="w-1/4">
-                                    <FormLabel>Quiz Name</FormLabel>
+                                    <FormLabel className="">Quiz Name</FormLabel>
                                     <FormControl>
                                         <Input placeholder="Enter quiz name" {...field} />
                                     </FormControl>

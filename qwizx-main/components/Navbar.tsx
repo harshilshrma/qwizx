@@ -52,9 +52,9 @@ const Navbar = () => {
             <Link href="/dashboard">
                 <div className='flex flex-col items-left'>
                     <div className='flex'>
-                        <p className='text-5xl font-bold'>Qwiz</p><span className='text-5xl text-primary font-bold'>X</span>
+                        <p className='md:text-5xl text-3xl font-bold'>Qwiz</p><span className='md:text-5xl text-3xl text-primary font-bold'>X</span>
                     </div>
-                    <p className='text-sm text-primary font-medium'>the fun way to get smarter. </p>
+                    <p className='md:text-sm text-xs text-primary font-medium'>the fun way to get smarter. </p>
                 </div>
             </Link>
 

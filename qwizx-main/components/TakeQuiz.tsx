@@ -55,8 +55,8 @@ const Home = () => {
 
     return (
         <div className="">
-            <h1 className="text-4xl font-bold mb-2 text-primary">Take a Quiz</h1>
-            <p className="text-lg mb-6">Explore and take any of these available quizzes created by users just like you. Share them with your friends and challenge each other!</p>
+            <h1 className="md:text-4xl text-2xl font-bold mb-2 text-primary">Take a Quiz</h1>
+            <p className="md:text-lg text-xs mb-6">Explore and take any of these available quizzes created by users just like you. Share them with your friends and challenge each other!</p>
             <Separator className="" />
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-6'>
                 {quizzes.map((quiz) => (

@@ -22,34 +22,34 @@ export default function Sidebar() {
     }, [selected, router]);
 
     const buttonClasses = (name: string) =>
-        `sidebar-button w-full justify-start ${selected === name ? 'bg-primary text-primary-foreground' : ''}`;
+        `sidebar-button md:w-full w-[130px] justify-start ${selected === name ? 'bg-primary text-primary-foreground' : ''}`;
 
     return (
-        <aside className="w-[200px] flex flex-col items-start h-full p-4 text-card-foreground">
+        <aside className="md:w-[200px] w-[170px] flex flex-col items-start h-full p-4 text-card-foreground">
             <div className="flex flex-col w-full items-start justify-between space-y-2">
                 <Button
                     variant='ghost'
                     onClick={() => handleClick('dashboard', '/dashboard')}
                     className={buttonClasses('dashboard')}
                 >
-                    <BiSolidDashboard className="text-xl" />
-                    <span className="ml-2">Dashboard</span>
+                    <BiSolidDashboard className="md:text-xl text-base" />
+                    <span className="md:ml-2 ml-1 md:text-base text-xs">Dashboard</span>
                 </Button>
                 <Button
                     variant='ghost'
                     onClick={() => handleClick('take-quiz', '/dashboard/take-quiz')}
                     className={buttonClasses('take-quiz')}
                 >
-                    <AiOutlineQuestionCircle className="text-xl" />
-                    <span className="ml-2">Take a Quiz</span>
+                    <AiOutlineQuestionCircle className="md:text-xl text-base" />
+                    <span className="md:ml-2 ml-1 md:text-base text-xs">Take a Quiz</span>
                 </Button>
                 <Button
                     variant='ghost'
                     onClick={() => handleClick('create-quiz', '/dashboard/create-quiz')}
                     className={buttonClasses('create-quiz')}
                 >
-                    <AiOutlineEdit className="text-xl" />
-                    <span className="ml-2">Create a Quiz</span>
+                    <AiOutlineEdit className="md:text-xl text-base" />
+                    <span className="md:ml-2 ml-1 md:text-base text-xs">Create a Quiz</span>
                 </Button>
             </div>
         </aside>
